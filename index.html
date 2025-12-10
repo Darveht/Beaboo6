@@ -1490,11 +1490,16 @@ setInterval(checkScheduledChapters, 60000);
     <div class="p-4 border-b border-gray-200">
       <div class="relative">
         <input type="text" id="search-conversations" placeholder="Buscar conversaciones..." 
-               class="w-full p-3 pl-10 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]"
-               oninput="searchConversations(this.value)">
+               class="w-full p-3 pl-10 pr-10 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]"
+               oninput="searchConversations(this.value); toggleClearButton('search-conversations', 'clear-conversations-btn')">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
+        <button id="clear-conversations-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors hidden" onclick="clearInputField('search-conversations', 'clear-conversations-btn')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -1796,9 +1801,16 @@ setInterval(checkScheduledChapters, 60000);
     <div class="space-y-4">
       <div>
         <label class="block text-sm font-medium mb-2">Search author:</label>
-        <input type="text" id="author-search" placeholder="Author name..." 
-               class="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FE2C55]"
-               oninput="searchAuthors(this.value)">
+        <div class="relative">
+          <input type="text" id="author-search" placeholder="Author name..." 
+                 class="w-full p-3 pr-10 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FE2C55]"
+                 oninput="searchAuthors(this.value); toggleClearButton('author-search', 'clear-author-search-btn')">
+          <button id="clear-author-search-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors hidden" onclick="clearInputField('author-search', 'clear-author-search-btn')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
       </div>
       
       <div id="authors-results" class="max-h-48 overflow-y-auto border border-gray-200 rounded-xl hidden">
@@ -2365,11 +2377,16 @@ document.getElementById('note-content').addEventListener('input', function() {
     <!-- Search Bar and Category Filter -->
     <div class="space-y-4 mb-6">
       <div class="relative">
-        <input id="search-input" type="text" placeholder="Search for stories or authors" class="w-full pl-12 pr-4 py-3 rounded-full bg-gray-100 text-black border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FE2C55] focus:border-transparent text-base">
+        <input id="search-input" type="text" placeholder="Search for stories or authors" class="w-full pl-12 pr-12 py-3 rounded-full bg-gray-100 text-black border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FE2C55] focus:border-transparent text-base">
         <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
+        <button id="clear-search-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors hidden" onclick="clearSearchInput()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
       <select id="category-filter" class="w-full p-3 rounded-full bg-gray-100 text-black border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FE2C55]">
         <option value="">All Categories</option>
@@ -2496,6 +2513,58 @@ document.getElementById('note-content').addEventListener('input', function() {
     { id: '2', name: 'Autor B', photoUrl: 'https://via.placeholder.com/150' },
     { id: '3', name: 'Autor C', photoUrl: 'https://via.placeholder.com/150' },
   ]);
+
+  // Funcionalidad del botón X en el campo de búsqueda
+  const searchInput = document.getElementById('search-input');
+  const clearBtn = document.getElementById('clear-search-btn');
+  
+  if (searchInput && clearBtn) {
+    searchInput.addEventListener('input', function() {
+      toggleClearButton('search-input', 'clear-search-btn');
+    });
+  }
+
+  function clearSearchInput() {
+    clearInputField('search-input', 'clear-search-btn');
+    
+    // Limpiar resultados de búsqueda específicos
+    const booksCarousel = document.getElementById('search-books-carousel');
+    const authorsList = document.getElementById('search-authors-list');
+    
+    if (booksCarousel) booksCarousel.innerHTML = '';
+    if (authorsList) authorsList.innerHTML = '';
+  }
+
+  // Funciones generales para manejar botones X en campos de búsqueda
+  function toggleClearButton(inputId, buttonId) {
+    const input = document.getElementById(inputId);
+    const button = document.getElementById(buttonId);
+    
+    if (input && button) {
+      if (input.value.length > 0) {
+        button.classList.remove('hidden');
+      } else {
+        button.classList.add('hidden');
+      }
+    }
+  }
+
+  function clearInputField(inputId, buttonId) {
+    const input = document.getElementById(inputId);
+    const button = document.getElementById(buttonId);
+    
+    if (input) {
+      input.value = '';
+      input.focus();
+      if (button) {
+        button.classList.add('hidden');
+      }
+      
+      // Disparar evento de input para limpiar resultados
+      const event = new Event('input', { bubbles: true });
+      input.dispatchEvent(event);
+    }
+  }
 </script>
 
 <style>
