@@ -2388,7 +2388,15 @@ document.getElementById('note-content').addEventListener('input', function() {
           </svg>
         </button>
       </div>
-      <select id="category-filter" class="w-full p-3 rounded-full bg-gray-100 text-black border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FE2C55]">
+      <div class="flex gap-2 overflow-x-auto pb-2">
+        <button class="category-chip active" data-value="">All</button>
+        <button class="category-chip" data-value="aventura">Adventure</button>
+        <button class="category-chip" data-value="romance">Romance</button>
+        <button class="category-chip" data-value="misterio">Mystery</button>
+        <button class="category-chip" data-value="fantasia">Fantasy</button>
+        <button class="category-chip" data-value="terror">Horror</button>
+      </div>
+      <select id="category-filter" class="hidden">
         <option value="">All Categories</option>
         <option value="aventura">Adventure</option>
         <option value="romance">Romance</option>
@@ -2565,6 +2573,23 @@ document.getElementById('note-content').addEventListener('input', function() {
       input.dispatchEvent(event);
     }
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const categoryChips = document.querySelectorAll('.category-chip');
+    const hiddenSelect = document.getElementById('category-filter');
+
+    categoryChips.forEach(chip => {
+      chip.addEventListener('click', function() {
+        categoryChips.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        
+        if (hiddenSelect) {
+          hiddenSelect.value = this.getAttribute('data-value');
+          hiddenSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  });
 </script>
 
 <style>
@@ -2645,6 +2670,30 @@ document.getElementById('note-content').addEventListener('input', function() {
     color: #FE2C55;
     border-bottom: 2px solid #FE2C55;
     font-weight: 500;
+  }
+
+  .category-chip {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .category-chip:hover {
+    border-color: #FE2C55;
+    color: #FE2C55;
+  }
+
+  .category-chip.active {
+    background: #FE2C55;
+    color: white;
+    border-color: #FE2C55;
   }
 
   /* Estilos del autor */
