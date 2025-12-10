@@ -2583,32 +2583,42 @@ firebase.auth().onAuthStateChanged(user => {
     
     btn.innerHTML = '<svg class="animate-spin h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Getting suggestions...';
     
+    const allSuggestions = [
+      'What book changed your perspective recently?',
+      'Share a creative writing tip that works for you',
+      'What character from fiction inspires you most?',
+      'Describe your ideal writing environment',
+      'What story genre do you love reading but never write?',
+      'Share a plot twist that surprised you',
+      'What motivates you to keep writing?',
+      'Describe your writing process in three words',
+      'What advice would you give to new writers?',
+      'Share your favorite opening line from any book',
+      'What writing challenge are you currently facing?',
+      'Describe a character you wish you had created',
+      'What story are you excited to tell next?',
+      'Share something that sparked your creativity today',
+      'What writing habit has improved your work?',
+      'Describe your dream collaboration with another author'
+    ];
+    
     try {
-      const response = await fetch('https://api.adviceslip.com/advice');
+      const response = await fetch('https://api.quotable.io/random?tags=inspirational');
       const data = await response.json();
       
-      const suggestions = [
-        data.advice.slip.advice,
-        'Share something that made you smile today',
-        'What\'s your favorite book recommendation?',
-        'Tell us about your creative process'
-      ];
+      const randomSuggestions = allSuggestions.sort(() => 0.5 - Math.random()).slice(0, 3);
+      const suggestions = [`Write about: ${data.content}`, ...randomSuggestions];
       
       suggestionsDiv.innerHTML = suggestions.map(suggestion => 
-        `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion.replace(/'/g, "\\'")}')">💡 ${suggestion}</div>`
+        `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion.replace(/'/g, "\\'")}')">${suggestion}</div>`
       ).join('');
       
       suggestionsDiv.classList.remove('hidden');
     } catch (error) {
-      const fallbackSuggestions = [
-        'Share your thoughts about today',
-        'What\'s inspiring you right now?',
-        'Tell us about your latest discovery',
-        'What\'s your favorite creative tip?'
-      ];
+      const randomSuggestions = allSuggestions.sort(() => 0.5 - Math.random()).slice(0, 4);
       
-      suggestionsDiv.innerHTML = fallbackSuggestions.map(suggestion => 
-        `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion}')">💡 ${suggestion}</div>`
+      suggestionsDiv.innerHTML = randomSuggestions.map(suggestion => 
+        `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion}')">${suggestion}</div>`
       ).join('');
       
       suggestionsDiv.classList.remove('hidden');
