@@ -1,4 +1,4 @@
-/* styles/stories.css */
+/* styles/relatos-diarios.css */
 
 .stories-container {
     padding: 4px 16px 8px 16px;
@@ -40,7 +40,7 @@
 .story .image-container {
     width: 66px;
     height: 66px;
-    border-radius: 50%;
+    border-radius: 12px;
     padding: 3px;
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     display: flex;
@@ -52,7 +52,7 @@
 .story .image-container img {
     width: 60px;
     height: 60px;
-    border-radius: 50%;
+    border-radius: 8px;
     border: 2px solid #fff;
     object-fit: cover;
 }
@@ -69,6 +69,7 @@
 .add-story .image-container {
     background: #fafafa;
     border: 1px dashed #dbdbdb;
+    border-radius: 12px;
 }
 
 .add-story .image-container i {

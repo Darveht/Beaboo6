@@ -1938,10 +1938,10 @@ setInterval(checkScheduledChapters, 60000);
                 <div class="image-container">
                     <i class="fas fa-plus"></i>
                 </div>
-                <div class="username">Tu historia</div>
+                <div class="username">Tu relato diario</div>
             </div>
             <div id="stories">
-                <!-- Las historias se cargarán aquí -->
+                <!-- Los relatos diarios se cargarán aquí -->
             </div>
         </div>
     </section>
@@ -2202,8 +2202,8 @@ firebase.auth().onAuthStateChanged(user => {
                   </svg>
                 </div>
                 <div class="flex-1 min-w-0">
-                  <h3 class="text-xl font-bold mb-2 text-black">创建故事</h3>
-                  <p class="text-gray-600 mb-3">撰写并发布您的原创故事</p>
+                  <h3 class="text-xl font-bold mb-2 text-black">Crear Relato Diario</h3>
+                  <p class="text-gray-600 mb-3">Comparte tu momento del día con la comunidad</p>
                   <div class="flex items-center text-[#FE2C55] group-hover:text-[#ef2950] transition-colors">
                     <span class="font-medium mr-2">Start</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -2269,7 +2269,7 @@ firebase.auth().onAuthStateChanged(user => {
             <div class="grid grid-cols-2 gap-4">
               <div class="text-center">
                 <div class="text-2xl font-bold mb-1" id="creator-stories-count">0</div>
-                <div class="text-sm opacity-90">Historias creadas</div>
+                <div class="text-sm opacity-90">Relatos diarios creados</div>
               </div>
               <div class="text-center">
                 <div class="text-2xl font-bold mb-1" id="creator-notes-count">0</div>
@@ -2385,7 +2385,7 @@ document.getElementById('note-content').addEventListener('input', function() {
     <h2 id="search-results-title" class="text-xl font-bold mb-4 text-black">Search Results</h2>
     <div class="flex justify-around border-b border-gray-200 mb-4">
       <button data-tab="books" class="tab-button py-2 w-1/2 text-center font-medium text-gray-500 hover:text-[#FE2C55] active">
-        Stories
+        Relatos Diarios
       </button>
       <button data-tab="authors" class="tab-button py-2 w-1/2 text-center font-medium text-gray-500 hover:text-[#FE2C55]">
         Authors
@@ -2394,7 +2394,7 @@ document.getElementById('note-content').addEventListener('input', function() {
 
     <!-- Stories Section -->
     <div id="books-section" class="block">
-      <h3 id="search-books-title" class="text-base font-semibold mb-3 text-[#FE2C55]">Stories</h3>
+      <h3 id="search-books-title" class="text-base font-semibold mb-3 text-[#FE2C55]">Relatos Diarios</h3>
       <div id="search-books-carousel" class="flex space-x-3 overflow-x-auto mb-6 p-1 scrollbar-hide">
         <!-- Stories will be loaded from Firebase here -->
       </div>
@@ -2701,7 +2701,7 @@ document.getElementById('note-content').addEventListener('input', function() {
       <!-- Historias del usuario -->
       <hr class="border-t border-gray-300 w-full my-4">
       <div class="mt-6 w-full">
-        <h3 id="profile-stories-title" class="text-lg font-bold mb-2 text-[#FE2C55]">0 Historias</h3>
+        <h3 id="profile-stories-title" class="text-lg font-bold mb-2 text-[#FE2C55]">0 Relatos Diarios</h3>
         <div id="user-stories" class="grid grid-cols-2 gap-4"></div>
       </div>
     </div>
@@ -2771,7 +2771,7 @@ document.getElementById('note-content').addEventListener('input', function() {
               </button>
               <div class="text-center">
                 <div id="profile-stories-count-desktop" class="text-2xl font-bold text-white">0</div>
-                <div class="text-white text-opacity-80 text-sm">historias publicadas</div>
+                <div class="text-white text-opacity-80 text-sm">relatos diarios publicados</div>
               </div>
             </div>
           </div>
@@ -2786,7 +2786,7 @@ document.getElementById('note-content').addEventListener('input', function() {
         <div class="max-w-7xl mx-auto px-6">
           <nav class="flex space-x-8">
             <button class="tab-button active py-4 px-2 border-b-2 border-[#FE2C55] text-[#FE2C55] font-medium" data-tab="stories">
-              Historias
+              Relatos Diarios
             </button>
             <button class="tab-button py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium" data-tab="notes">
               Notas
@@ -2808,7 +2808,7 @@ document.getElementById('note-content').addEventListener('input', function() {
                 <div class="flex items-center justify-between">
                   <div>
                     <h3 class="text-2xl font-bold mb-2">BeaBoo Studio</h3>
-                    <p class="text-white text-opacity-90">Crea y gestiona tus historias con herramientas profesionales</p>
+                    <p class="text-white text-opacity-90">Crea y gestiona tus relatos diarios con herramientas profesionales</p>
                   </div>
                   <button onclick="openBeabooStudio()" class="bg-white text-[#FE2C55] px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-all flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -2822,20 +2822,20 @@ document.getElementById('note-content').addEventListener('input', function() {
               <!-- Header de historias con botón crear -->
               <div class="flex justify-between items-center mb-6">
                 <div>
-                  <h2 id="profile-stories-header" class="text-2xl font-bold text-gray-900">0 Historias</h2>
+                  <h2 id="profile-stories-header" class="text-2xl font-bold text-gray-900">0 Relatos Diarios</h2>
                   <button onclick="openBeabooStudio()" class="text-[#FE2C55] hover:text-red-600 flex items-center mt-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
-                    Gestionar mis historias
+                    Gestionar mis relatos diarios
                   </button>
                 </div>
                 <button onclick="openStoryCreation()" class="bg-[#FE2C55] text-white px-6 py-3 rounded-xl hover:bg-red-600 transition-all flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                   </svg>
-                  Nueva historia
+                  Nuevo relato diario
                 </button>
               </div>
 
@@ -2859,7 +2859,7 @@ document.getElementById('note-content').addEventListener('input', function() {
               <h3 class="font-bold text-gray-900 mb-4">Estadísticas</h3>
               <div class="space-y-4">
                 <div class="flex items-center justify-between">
-                  <span class="text-gray-600">Historias publicadas</span>
+                  <span class="text-gray-600">Relatos diarios publicados</span>
                   <span id="sidebar-stories-count" class="font-bold text-[#FE2C55]">0</span>
                 </div>
                 <div class="flex items-center justify-between">
@@ -3550,7 +3550,7 @@ function saveNote() {
 
       <!-- Historias del autor -->
       <div class="mt-4 w-full">
-        <h3 id="author-stories-title" class="text-lg font-bold mb-2 text-[#FE2C55]">Historias del autor</h3>
+        <h3 id="author-stories-title" class="text-lg font-bold mb-2 text-[#FE2C55]">Relatos diarios del autor</h3>
         <div id="author-stories" class="grid grid-cols-2 gap-4"></div>
       </div>
     </div>
@@ -3638,23 +3638,23 @@ function saveNote() {
     <!-- Contenido principal -->
     <div class="max-w-4xl mx-auto px-4 py-8">
       <div class="text-center mb-12">
-        <h2 id="story-type-title" class="text-4xl md:text-5xl font-bold mb-4 text-black">¿Qué historia deseas contar?</h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Elige el tipo de historia que mejor se adapte a tu creatividad y comienza a escribir tu próxima obra maestra.</p>
+        <h2 id="story-type-title" class="text-4xl md:text-5xl font-bold mb-4 text-black">¿Qué relato diario deseas compartir?</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Comparte tu momento especial del día con la comunidad de BeaBoo.</p>
       </div>
 
       <!-- Grid de opciones de historia -->
       <div class="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
-        <!-- Historia Completa -->
-        <div onclick="selectStoryType('historia_completa')" class="group cursor-pointer">
+        <!-- Relato Diario -->
+        <div onclick="selectStoryType('relato_diario')" class="group cursor-pointer">
           <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#FE2C55]">
             <div class="text-center">
               <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <h3 class="text-2xl font-bold mb-4 text-black">Historia Completa</h3>
-              <p class="text-gray-600 mb-6">Una narrativa dividida en capítulos, ideal para desarrollar tramas complejas.</p>
+              <h3 class="text-2xl font-bold mb-4 text-black">Relato Diario</h3>
+              <p class="text-gray-600 mb-6">Comparte un momento especial de tu día con imágenes y texto.</p>
               <div class="flex items-center justify-center text-[#FE2C55] group-hover:text-[#ef2950] transition-colors">
                 <span class="font-medium mr-2">Comenzar</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -3683,7 +3683,7 @@ function saveNote() {
           </svg>
           <span>Volver</span>
         </button>
-        <h1 class="text-xl font-bold text-[#FE2C55]">Configurar Historia</h1>
+        <h1 class="text-xl font-bold text-[#FE2C55]">Configurar Relato Diario</h1>
         <div class="w-20"></div> <!-- Spacer para centrar el título -->
       </div>
     </div>
@@ -3749,7 +3749,7 @@ function saveNote() {
 
             <!-- Idioma -->
             <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-3">Idioma de la historia *</label>
+              <label class="block text-sm font-semibold text-gray-700 mb-3">Idioma del relato diario *</label>
               <div class="relative">
                 <select id="story-language" class="w-full p-4 pl-12 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FE2C55] focus:border-transparent appearance-none transition-all" required>
                   <option value="" disabled selected>Selecciona un idioma</option>
@@ -3808,7 +3808,7 @@ function saveNote() {
                     </svg>
                   </div>
                   <div class="flex-1">
-                    <h4 class="font-semibold text-gray-800 mb-1">Título de tu historia</h4>
+                    <h4 class="font-semibold text-gray-800 mb-1">Título de tu relato diario</h4>
                     <p class="text-sm text-gray-600 mb-2">Por tu nombre</p>
                     <p class="text-xs text-gray-500">Categoría • Idioma</p>
                   </div>
@@ -3824,7 +3824,7 @@ function saveNote() {
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
-            Crear Historia
+            Crear Relato Diario
           </button>
         </div>
       </form>
@@ -3852,11 +3852,11 @@ function saveNote() {
     </button>
 
     <!-- Título -->
-    <h2 id="edit-story-title" class="text-2xl font-bold mb-6 text-black">Editar Historia</h2>
+    <h2 id="edit-story-title" class="text-2xl font-bold mb-6 text-black">Editar Relato Diario</h2>
 
     <!-- Edición de idioma -->
     <div class="mb-5">
-      <label for="edit-story-language" class="text-sm text-gray-600 ml-2 mb-1 block">Idioma de la historia</label>
+      <label for="edit-story-language" class="text-sm text-gray-600 ml-2 mb-1 block">Idioma del relato diario</label>
       <div class="relative">
         <select id="edit-story-language" class="w-full p-3 pl-10 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FE2C55] text-black appearance-none">
           <option value="">Selecciona un idioma</option>
@@ -3911,7 +3911,7 @@ function saveNote() {
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
       </svg>
-      <span>Eliminar Historia</span>
+      <span>Eliminar Relato Diario</span>
     </button>
   </div>
 </div>
@@ -4030,7 +4030,7 @@ function saveNote() {
       <!-- Detalles de historia -->
       <div class="flex-1 flex flex-col">
         <h2 id="detail-title" class="text-2xl sm:text-3xl font-bold text-black mb-2">
-          Título de la historia
+          Título del relato diario
         </h2>
         <p id="detail-author"
            class="text-gray-600 mb-4 cursor-pointer hover:text-[#FE2C55] transition-colors duration-200"
@@ -4052,7 +4052,7 @@ function saveNote() {
     <div class="w-full mb-6">
       <h3 class="text-lg font-semibold mb-3 text-[#FE2C55]">Sinopsis</h3>
       <p id="detail-synopsis" class="text-gray-600 leading-relaxed">
-        Sinopsis de la historia...
+        Descripción del relato diario...
       </p>
     </div>
 

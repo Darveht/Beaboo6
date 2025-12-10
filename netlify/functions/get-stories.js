@@ -29,7 +29,7 @@ exports.handler = async (event) => {
   try {
     const { limit = 100, userId } = event.queryStringParameters || {};
 
-    // Listar todas las historias
+    // Listar todos los relatos diarios
     const listCommand = new ListObjectsV2Command({
       Bucket: process.env.MY_AWS_S3_BUCKET_NAME || 'libros-de-glam-2025',
       Prefix: 'stories/metadata/',
@@ -72,10 +72,10 @@ exports.handler = async (event) => {
       body: JSON.stringify({ stories }),
     };
   } catch (error) {
-    console.error('Error getting stories from S3:', error);
+    console.error('Error getting daily stories from S3:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to get stories', message: error.message }),
+      body: JSON.stringify({ error: 'Failed to get daily stories', message: error.message }),
     };
   }
 };

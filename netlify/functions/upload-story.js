@@ -62,7 +62,7 @@ exports.handler = async (event) => {
       coverImageUrl = `https://${process.env.MY_AWS_S3_BUCKET_NAME || 'libros-de-glam-2025'}.s3.${process.env.MY_AWS_REGION || 'us-east-2'}.amazonaws.com/${coverKey}`;
     }
 
-    // Crear objeto JSON con los datos de la historia
+    // Crear objeto JSON con los datos del relato diario
     const storyData = {
       id: storyId,
       title,
@@ -79,7 +79,7 @@ exports.handler = async (event) => {
       ratingValue: 0
     };
 
-    // Subir metadata de la historia
+    // Subir metadata del relato diario
     const storyKey = `stories/metadata/${storyId}.json`;
     const storyCommand = new PutObjectCommand({
       Bucket: process.env.MY_AWS_S3_BUCKET_NAME || 'libros-de-glam-2025',
@@ -100,10 +100,10 @@ exports.handler = async (event) => {
       }),
     };
   } catch (error) {
-    console.error('Error uploading story to S3:', error);
+    console.error('Error uploading daily story to S3:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to upload story', message: error.message }),
+      body: JSON.stringify({ error: 'Failed to upload daily story', message: error.message }),
     };
   }
 };

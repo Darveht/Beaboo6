@@ -36,7 +36,7 @@ exports.handler = async (event) => {
       };
     }
 
-    // Obtener la metadata de la historia para saber el coverImage
+    // Obtener la metadata del relato diario para saber el coverImage
     const storyKey = `stories/metadata/${storyId}.json`;
     let storyData;
     try {
@@ -50,7 +50,7 @@ exports.handler = async (event) => {
     } catch (error) {
       return {
         statusCode: 404,
-        body: JSON.stringify({ error: 'Story not found' }),
+        body: JSON.stringify({ error: 'Daily story not found' }),
       };
     }
 
@@ -84,7 +84,7 @@ exports.handler = async (event) => {
       await Promise.all(deletePromises);
     }
 
-    // Eliminar la metadata de la historia
+    // Eliminar la metadata del relato diario
     const deleteStoryCommand = new DeleteObjectCommand({
       Bucket: process.env.MY_AWS_S3_BUCKET_NAME || 'libros-de-glam-2025',
       Key: storyKey,
@@ -97,10 +97,10 @@ exports.handler = async (event) => {
       body: JSON.stringify({ success: true }),
     };
   } catch (error) {
-    console.error('Error deleting story from S3:', error);
+    console.error('Error deleting daily story from S3:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to delete story', message: error.message }),
+      body: JSON.stringify({ error: 'Failed to delete daily story', message: error.message }),
     };
   }
 };

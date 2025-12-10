@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             
             if (!response.ok) {
-                throw new Error(result.error || 'Error al cargar historias');
+                throw new Error(result.error || 'Error al cargar relatos diarios');
             }
 
             storiesContainer.innerHTML = '';
@@ -120,9 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             },
                             body: JSON.stringify({ storyId: story.id })
                         });
-                        console.log(`Historia ${story.id} eliminada automáticamente (más de 12 horas)`);
+                        console.log(`Relato diario ${story.id} eliminado automáticamente (más de 12 horas)`);
                     } catch (error) {
-                        console.error('Error eliminando historia antigua:', error);
+                        console.error('Error eliminando relato diario antiguo:', error);
                     }
                 });
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     storiesByUser[story.userId].push(story);
                 });
 
-                // Crear elementos de historias en orden horizontal
+                // Crear elementos de relatos diarios en orden horizontal
                 for (const userId in storiesByUser) {
                     const userStories = storiesByUser[userId];
                     if (userStories.length > 0) {
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Usar username, nunca email, y saltar si es anónimo
         let displayName = storyData.username || storyData.email?.split('@')[0] || '';
         
-        // No mostrar historias anónimas
+        // No mostrar relatos diarios anónimos
         if (!displayName || displayName.toLowerCase() === 'anónimo' || displayName.toLowerCase() === 'anonimo') {
             return null;
         }
@@ -178,19 +178,19 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const file = document.getElementById('story-file').files[0];
         if (!file) {
-            alert('Por favor selecciona una imagen');
+            alert('Por favor selecciona una imagen para tu relato diario');
             return;
         }
 
         const currentUser = auth.currentUser;
         if (!currentUser) {
-            alert("Debes iniciar sesión para subir una historia.");
+            alert("Debes iniciar sesión para subir un relato diario.");
             return;
         }
 
         const submitBtn = e.target.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Subiendo...';
+        submitBtn.textContent = 'Subiendo relato diario...';
 
         const progressDiv = document.querySelector('.upload-progress');
         const progressBar = progressDiv.querySelector('.progress-bar');
@@ -211,15 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 progressText.textContent = 'Subiendo...';
                 progressBar.style.width = '70%';
                 
-                // Subir historia
+                // Subir relato diario
                 const response = await fetch('/.netlify/functions/upload-story', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        title: 'Story',
-                        category: 'story',
+                        title: 'Relato Diario',
+                        category: 'relato_diario',
                         rating: 'all',
                         language: 'es',
                         synopsis: '',
@@ -235,24 +235,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
                 
                 if (!response.ok) {
-                    throw new Error(result.error || 'Error al subir historia');
+                    throw new Error(result.error || 'Error al subir relato diario');
                 }
                 
                 progressBar.style.width = '100%';
-                progressText.textContent = '¡Historia subida!';
+                progressText.textContent = '¡Relato diario subido!';
                 
                 setTimeout(() => {
                     storyUploadModal.classList.remove('active');
                     resetUploadForm();
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'Subir Historia';
+                    submitBtn.textContent = 'Subir Relato Diario';
                     loadStories();
                 }, 500);
             } catch (error) {
-                console.error("Error al subir historia:", error);
-                alert('Error al subir la historia. Por favor intenta de nuevo. Error: ' + error.message);
+                console.error("Error al subir relato diario:", error);
+                alert('Error al subir el relato diario. Por favor intenta de nuevo. Error: ' + error.message);
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Subir Historia';
+                submitBtn.textContent = 'Subir Relato Diario';
                 progressDiv.style.display = 'none';
                 progressBar.style.width = '0%';
             }
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Error al leer imagen:", error);
             alert('Error al procesar la imagen');
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Subir Historia';
+            submitBtn.textContent = 'Subir Relato Diario';
             progressDiv.style.display = 'none';
             progressBar.style.width = '0%';
         };
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function openStoryViewer(userId) {
         try {
-            // Obtener historias del usuario desde AWS S3
+            // Obtener relatos diarios del usuario desde AWS S3
             const response = await fetch(`/.netlify/functions/get-stories?userId=${userId}`, {
                 method: 'GET',
             });
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Filtrar solo historias de las últimas 12 horas
+            // Filtrar solo relatos diarios de las últimas 12 horas
             const twelveHoursAgo = Date.now() - (12 * 60 * 60 * 1000);
             const stories = result.stories.filter(story => story.timestamp > twelveHoursAgo);
             
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         menu.innerHTML = `
                             <button class="delete-option">
                                 <i class="fas fa-trash-alt"></i>
-                                <span>Eliminar historia</span>
+                                <span>Eliminar relato diario</span>
                             </button>
                         `;
                         
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         closeStoryViewer();
                     }
-                }, 5000); // 5 segundos por historia
+                }, 5000); // 5 segundos por relato diario
             }
 
             showStory(currentStoryIndex);
@@ -448,14 +448,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             
             if (!response.ok) {
-                throw new Error(result.error || 'Error al eliminar historia');
+                throw new Error(result.error || 'Error al eliminar relato diario');
             }
             
             closeStoryViewer();
             loadStories();
         } catch (error) {
             console.error("Error deleting story:", error);
-            alert('Error al eliminar la historia');
+            alert('Error al eliminar el relato diario');
         }
     }
 
