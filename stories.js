@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentUser = auth.currentUser;
         if (!currentUser) {
-            alert("Debes iniciar sesión para subir una historia.");
+            alert("Debes iniciar sesión para subir un relato diario.");
             return;
         }
 
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 progressText.textContent = 'Subiendo...';
                 progressBar.style.width = '70%';
                 
-                // Subir historia
+                // Subir relato diario
                 const response = await fetch('/.netlify/functions/upload-story', {
                     method: 'POST',
                     headers: {
@@ -235,24 +235,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
                 
                 if (!response.ok) {
-                    throw new Error(result.error || 'Error al subir historia');
+                    throw new Error(result.error || 'Error al subir relato diario');
                 }
                 
                 progressBar.style.width = '100%';
-                progressText.textContent = '¡Historia subida!';
+                progressText.textContent = '¡Relato diario subido!';
                 
                 setTimeout(() => {
                     storyUploadModal.classList.remove('active');
                     resetUploadForm();
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'Subir Historia';
+                    submitBtn.textContent = 'Subir Relato Diario';
                     loadStories();
                 }, 500);
             } catch (error) {
-                console.error("Error al subir historia:", error);
-                alert('Error al subir la historia. Por favor intenta de nuevo. Error: ' + error.message);
+                console.error("Error al subir relato diario:", error);
+                alert('Error al subir el relato diario. Por favor intenta de nuevo. Error: ' + error.message);
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Subir Historia';
+                submitBtn.textContent = 'Subir Relato Diario';
                 progressDiv.style.display = 'none';
                 progressBar.style.width = '0%';
             }
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Error al leer imagen:", error);
             alert('Error al procesar la imagen');
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Subir Historia';
+            submitBtn.textContent = 'Subir Relato Diario';
             progressDiv.style.display = 'none';
             progressBar.style.width = '0%';
         };
