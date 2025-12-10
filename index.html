@@ -2584,41 +2584,58 @@ firebase.auth().onAuthStateChanged(user => {
     btn.innerHTML = '<svg class="animate-spin h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Getting suggestions...';
     
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer YOUR_API_KEY_HERE'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: [{
-            role: 'user',
-            content: 'Generate 4 creative writing prompts for social media posts about books, writing, or storytelling. Keep each under 50 words and make them engaging.'
-          }],
-          max_tokens: 200
+          inputs: 'Generate creative writing prompts about books and storytelling:',
+          parameters: {
+            max_length: 100,
+            temperature: 0.8,
+            do_sample: true
+          }
         })
       });
       
-      if (!response.ok) throw new Error('API failed');
-      
-      const data = await response.json();
-      const aiText = data.choices[0].message.content;
-      const suggestions = aiText.split('\n').filter(s => s.trim()).slice(0, 4);
-      
-      suggestionsDiv.innerHTML = suggestions.map(suggestion => 
-        `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion.replace(/'/g, "\\'")}')">${suggestion.replace(/^\d+\.\s*/, '')}</div>`
-      ).join('');
+      if (response.ok) {
+        const data = await response.json();
+        const aiText = data[0]?.generated_text || '';
+        
+        const prompts = [
+          aiText.split(':')[1]?.trim() || 'What story changed your perspective?',
+          'Share your favorite plot twist from any book',
+          'Describe your ideal writing space in detail',
+          'What character would you love to meet in real life?'
+        ];
+        
+        suggestionsDiv.innerHTML = prompts.map(suggestion => 
+          `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion.replace(/'/g, "\\'")}')">${suggestion}</div>`
+        ).join('');
+      } else {
+        throw new Error('API failed');
+      }
       
     } catch (error) {
-      const fallbackSuggestions = [
-        'What book completely changed how you see the world?',
-        'Share your most unusual writing habit or ritual',
-        'Which fictional character would make the best writing mentor?',
-        'Describe your dream writing retreat in three words'
+      const randomPrompts = [
+        'What book made you cry and why?',
+        'Share your strangest writing inspiration',
+        'Which author would you invite to dinner?',
+        'Describe your writing process in one word',
+        'What fictional world feels most real to you?',
+        'Share a quote that changed your life',
+        'What story are you dying to tell?',
+        'Describe your perfect reading day',
+        'What character deserved a better ending?',
+        'Share your most unusual book recommendation',
+        'What writing advice do you wish you had sooner?',
+        'Describe a scene that gave you chills'
       ];
       
-      suggestionsDiv.innerHTML = fallbackSuggestions.map(suggestion => 
+      const selected = randomPrompts.sort(() => 0.5 - Math.random()).slice(0, 4);
+      
+      suggestionsDiv.innerHTML = selected.map(suggestion => 
         `<div class="p-2 bg-gray-50 rounded-lg text-sm cursor-pointer hover:bg-gray-100 transition" onclick="useSuggestion('${suggestion}')">${suggestion}</div>`
       ).join('');
     }
