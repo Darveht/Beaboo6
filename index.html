@@ -2545,6 +2545,25 @@ firebase.auth().onAuthStateChanged(user => {
       });
     });
   });
+
+  function switchCommunityTab(tab) {
+    const feedTab = document.getElementById('feed-tab');
+    const photosTab = document.getElementById('photos-tab');
+    const feedContent = document.getElementById('notes-feed');
+    const photosContent = document.getElementById('photos-feed');
+    
+    if (tab === 'feed') {
+      feedTab.classList.add('active');
+      photosTab.classList.remove('active');
+      feedContent.classList.remove('hidden');
+      photosContent.classList.add('hidden');
+    } else if (tab === 'photos') {
+      photosTab.classList.add('active');
+      feedTab.classList.remove('active');
+      photosContent.classList.remove('hidden');
+      feedContent.classList.add('hidden');
+    }
+  }
 </script>
 
 <style>
