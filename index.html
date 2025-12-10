@@ -2475,31 +2475,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
   }
 
-  // Ejemplo de como cargar autores desde Firebase
-  function loadAuthors(authors) {
-    const authorsList = document.getElementById('search-authors-list');
-    authors.forEach(author => {
-      const authorItem = document.createElement('div');
-      authorItem.classList.add('flex', 'items-center', 'justify-between', 'p-4', 'bg-gray-100', 'rounded-lg', 'shadow-sm');
-      authorItem.innerHTML = `
-        <div class="flex items-center">
-          <img src="${author.photoUrl}" alt="${author.name}" class="h-12 w-12 rounded-full mr-4">
-          <span class="font-semibold text-black">${author.name}</span>
-        </div>
-        <button id="follow-${author.id}" class="px-4 py-2 bg-gray-200 text-black rounded-full font-medium hover:bg-[#FE2C55] transition-all" onclick="toggleFollow('${author.id}')">
-          Seguir
-        </button>
-      `;
-      authorsList.appendChild(authorItem);
-    });
-  }
 
-  // Simulación de autores cargados (reemplaza con Firebase)
-  loadAuthors([
-    { id: '1', name: 'Autor A', photoUrl: 'https://via.placeholder.com/150' },
-    { id: '2', name: 'Autor B', photoUrl: 'https://via.placeholder.com/150' },
-    { id: '3', name: 'Autor C', photoUrl: 'https://via.placeholder.com/150' },
-  ]);
 
   // Funcionalidad del botón X en el campo de búsqueda
   const searchInput = document.getElementById('search-input');
