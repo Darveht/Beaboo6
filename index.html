@@ -153,26 +153,26 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <style>
-    /* ESTILOS BASE ADAPTADOS */
+    /* ESTILOS BASE CHATGPT STYLE */
 body {
-  font-family: 'Roboto', sans-serif;
-  background: white;
-  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background: #ffffff;
+  color: #0d0d0d;
 }
 
-/* Sobrescribir estilos verdes a rosa TikTok */
+/* Estilos ChatGPT - Colores neutros */
 .bg-green-500,
 .bg-green-600,
 .hover\:bg-green-600:hover,
 .text-green-500,
 .text-green-600 {
-  background-color: #FE2C55 !important;
+  background-color: #10a37f !important;
   color: white !important;
 }
 
 .border-green-500,
 .border-green-600 {
-  border-color: #FE2C55 !important;
+  border-color: #10a37f !important;
 }
 
 /* Ocultar título "Capítulos" y tagline en la pantalla de inicio */
@@ -183,16 +183,16 @@ body {
 
 /* Línea divisoria */
 .section-divider {
-  border-bottom: 2px solid #FE2C55;
+  border-bottom: 1px solid #d1d5db;
   margin: 20px 0;
 }
 
 
 /* Estilo para las estrellas seleccionadas */
 .star.selected {
-  color: #FE2C55;
+  color: #10a37f;
   transition: color 0.3s ease-in-out;
-  text-shadow: 0 0 10px rgba(254,44,85,0.5);
+  text-shadow: none;
 }
 
 /* Margen para la lista de capítulos */
@@ -202,25 +202,25 @@ body {
 
 /* Notificaciones */
 .notification-item {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   margin-bottom: 8px;
-  background: #f9f9f9;
-  color: #000;
+  background: #f7f7f7;
+  color: #0d0d0d;
 }
 
 .notification-time {
   font-size: 0.8em;
-  color: #FE2C55;
+  color: #565869;
   margin-top: 4px;
 }
 
 /* Etiqueta de fundador */
 .founder-tag {
   font-size: 0.8rem;
-  color: #FE2C55;
-  background-color: rgba(254,44,85,0.15);
+  color: #10a37f;
+  background-color: rgba(16,163,127,0.1);
   border-radius: 4px;
   padding: 2px 4px;
   margin-left: 4px;
@@ -228,11 +228,11 @@ body {
 
 /* Barra inferior con efecto difuminado */
 #bottom-nav {
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: background-color 0.3s ease-in-out;
-  border-top: 1px solid rgba(254,44,85,0.3);
+  border-top: 1px solid #e5e7eb;
 }
 
 /* --- MODALES CON Z-INDEX ALTO --- */
@@ -317,7 +317,7 @@ body {
   position: absolute;
   top: 8px;
   left: 8px;
-  background-color: #FE2C55;
+  background-color: #10a37f;
   color: white;
   border-radius: 9999px;
   padding: 2px 6px;
@@ -339,7 +339,7 @@ body {
   left: 50%;
   width: 10px;
   height: 10px;
-  background-color: #FE2C55;
+  background-color: #10a37f;
   border-radius: 50%;
   animation: dotRotate 4s linear infinite;
 }
@@ -403,12 +403,12 @@ function checkScheduledChapters() {
 // Verificar capítulos programados cada minuto
 setInterval(checkScheduledChapters, 60000);
 
-    box-shadow: 0 0 0 0 rgba(254, 44, 85, 0);
+    box-shadow: 0 0 0 0 rgba(16, 163, 127, 0);
   }
 }
 
 .live-border {
-  border: 4px solid #FE2C55;
+  border: 4px solid #10a37f;
   border-radius: 50%;
   position: relative;
   animation: pulse 2s infinite;
@@ -421,7 +421,7 @@ setInterval(checkScheduledChapters, 60000);
   left: -4px;
   width: calc(100% + 8px);
   height: calc(100% + 8px);
-  border: 2px solid #FE2C55;
+  border: 2px solid #10a37f;
   border-radius: 50%;
   animation: pulse 2s infinite;
   pointer-events: none;
@@ -435,8 +435,8 @@ setInterval(checkScheduledChapters, 60000);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #00c6ba, #0082c6);
-      box-shadow: 0 4px 10px rgba(0, 198, 186, 0.4);
+      background: linear-gradient(135deg, #10a37f, #0d8b6f);
+      box-shadow: 0 4px 10px rgba(16, 163, 127, 0.4);
     }
 
     /* Ocultar la cruz en el transmisor (se mantiene oculta) */
@@ -493,7 +493,7 @@ setInterval(checkScheduledChapters, 60000);
       font-size: 0.8rem;
       margin-top: 4px;
       display: block;
-      color: #374151;
+      color: #565869;
     }
 
     /* Animación del regalo (overlay) – ajustada para ocupar todo el ancho y centrarse */
@@ -818,7 +818,7 @@ setInterval(checkScheduledChapters, 60000);
       /* Ocupa todo el ancho */
       max-width: 80%;
       /* Para que tenga un margen en pantallas pequeñas */
-      background: linear-gradient(135deg, #ff57a8, #7659ff);
+      background: linear-gradient(135deg, #10a37f, #0d8b6f);
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
@@ -849,12 +849,12 @@ setInterval(checkScheduledChapters, 60000);
       z-index: 10000;
     }
 
-    /* VISTA LIVE (iQiyi Style) */
+    /* VISTA LIVE (ChatGPT Style) */
     :root {
-      --iqiyi-teal: #00C6B9;
-      --iqiyi-blue: #2C7DFA;
-      --iqiyi-purple: #7659FF;
-      --iqiyi-pink: #FF57A8;
+      --iqiyi-teal: #10a37f;
+      --iqiyi-blue: #10a37f;
+      --iqiyi-purple: #10a37f;
+      --iqiyi-pink: #10a37f;
     }
 
     .live-container {
@@ -1012,7 +1012,7 @@ setInterval(checkScheduledChapters, 60000);
     }
 
     .comment-bubble {
-      background-color: var(--duolingo-green);
+      background-color: #10a37f;
       color: white;
       padding: 0.5rem 1rem;
       border-radius: 20px;
@@ -1869,7 +1869,7 @@ setInterval(checkScheduledChapters, 60000);
       <button
         id="submitButton"
         type="submit"
-        class="w-full bg-[#FE2C55] text-white p-4 font-bold rounded-full transform hover:scale-105 transition"
+        class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full transform hover:scale-105 transition"
       >
         Sign In
       </button>
@@ -1885,7 +1885,7 @@ setInterval(checkScheduledChapters, 60000);
       </a>
       <button
         id="toggleAuth"
-        class="block text-sm font-medium text-[#FE2C55] hover:text-[#25F4EE] transition"
+        class="block text-sm font-medium text-[#10a37f] hover:text-[#0d8b6f] transition"
       >
         Don't have an account? Sign up
       </button>
@@ -1900,13 +1900,13 @@ setInterval(checkScheduledChapters, 60000);
   <div id="top-navbar" class="flex items-center justify-between px-4 py-3 border-b border-gray-200 sticky top-0 z-50 bg-white">
     <h1 id="app-name" class="text-2xl font-bold text-[#161823]">BeaBoo</h1>
     <div class="flex items-center space-x-4">
-      <button onclick="openSearch()" aria-label="Buscar" class="relative w-6 h-6 text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openSearch()" aria-label="Buscar" class="relative w-6 h-6 text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8" stroke-linecap="round" stroke-linejoin="round" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
-      <button onclick="openCalendar()" aria-label="Calendario" class="relative w-6 h-6 text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openCalendar()" aria-label="Calendario" class="relative w-6 h-6 text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
           <line x1="16" y1="2" x2="16" y2="6" />
@@ -1914,19 +1914,19 @@ setInterval(checkScheduledChapters, 60000);
           <line x1="3" y1="10" x2="21" y2="10" />
         </svg>
       </button>
-      <button onclick="openLiveStreamModal()" aria-label="Transmitir en vivo" class="relative w-6 h-6 text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openLiveStreamModal()" aria-label="Transmitir en vivo" class="relative w-6 h-6 text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M23 7l-7 5 7 5V7z"/>
           <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
         </svg>
       </button>
-      <button onclick="openMessages()" aria-label="Mensajes" class="relative w-6 h-6 text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openMessages()" aria-label="Mensajes" class="relative w-6 h-6 text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <span id="unread-messages-count" class="hidden absolute -top-2 -right-2 bg-[#FE2C55] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+        <span id="unread-messages-count" class="hidden absolute -top-2 -right-2 bg-[#10a37f] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
       </button>
-      <button onclick="openNotifications()" aria-label="Notificaciones" class="relative w-6 h-6 text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openNotifications()" aria-label="Notificaciones" class="relative w-6 h-6 text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke-linecap="round" stroke-linejoin="round" />
           <path d="M13.73 21a2 2 0 01-3.46 0" stroke-linecap="round" stroke-linejoin="round" />
@@ -1963,7 +1963,7 @@ setInterval(checkScheduledChapters, 60000);
 
 <section id="new-releases-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="new-releases-title" class="text-2xl font-bold text-[#FE2C55]">New Releases</h2>
+        <h2 id="new-releases-title" class="text-2xl font-bold text-[#10a37f]">New Releases</h2>
       </div>
       <div id="new-releases" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
 </section>
@@ -2068,56 +2068,56 @@ firebase.auth().onAuthStateChanged(user => {
 
     <section id="top10-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="top10-title" class="text-2xl font-bold text-[#FE2C55]">Top 10</h2>
+        <h2 id="top10-title" class="text-2xl font-bold text-[#10a37f]">Top 10</h2>
       </div>
       <div id="top10" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
     </section>
 
     <section id="popular-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="popular-title" class="text-2xl font-bold text-[#FE2C55]">Most Popular</h2>
+        <h2 id="popular-title" class="text-2xl font-bold text-[#10a37f]">Most Popular</h2>
       </div>
       <div id="popular" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
     </section>
 
     <section id="terror-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="terror-title" class="text-2xl font-bold text-[#FE2C55]">Featured Horror Stories</h2>
+        <h2 id="terror-title" class="text-2xl font-bold text-[#10a37f]">Featured Horror Stories</h2>
       </div>
       <div id="terror-stories" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
     </section>
 
     <section id="trending-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="trending-title" class="text-2xl font-bold text-[#FE2C55]">Trending Stories</h2>
+        <h2 id="trending-title" class="text-2xl font-bold text-[#10a37f]">Trending Stories</h2>
       </div>
       <div id="trending-stories" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
     </section>
 
     <section id="mystery-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="mystery-title" class="text-2xl font-bold text-[#FE2C55]">Popular in Mystery</h2>
+        <h2 id="mystery-title" class="text-2xl font-bold text-[#10a37f]">Popular in Mystery</h2>
       </div>
       <div id="mystery-stories" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
     </section>
 
     <section id="adventure-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="adventure-title" class="text-2xl font-bold text-[#FE2C55]">Best in Adventure</h2>
+        <h2 id="adventure-title" class="text-2xl font-bold text-[#10a37f]">Best in Adventure</h2>
       </div>
       <div id="adventure-stories" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
     </section>
 
     <section id="suggested-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="suggested-title" class="text-2xl font-bold" style="color: #FE2C55 !important;">Recommended for You</h2>
+        <h2 id="suggested-title" class="text-2xl font-bold" style="color: #10a37f !important;">Recommended for You</h2>
       </div>
       <div id="suggested-stories" class="flex space-x-4 overflow-x-auto"></div>
     </section>
 
     <section id="featured-authors-section" class="mb-10">
       <div class="flex justify-between items-center mb-4">
-        <h2 id="featured-authors-title" class="text-2xl font-bold" style="color: #FE2C55 !important;">Featured Authors</h2>
+        <h2 id="featured-authors-title" class="text-2xl font-bold" style="color: #10a37f !important;">Featured Authors</h2>
       </div>
       <div id="featured-authors" class="flex space-x-4 overflow-x-auto px-2"></div>
     </section>
@@ -2127,26 +2127,26 @@ firebase.auth().onAuthStateChanged(user => {
   <!-- BOTTOM NAVIGATION TIKTOK STYLE -->
   <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white transition-transform duration-300">
     <div class="grid grid-cols-4 gap-2 p-3">
-      <button onclick="openHome()" class="flex flex-col items-center text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openHome()" class="flex flex-col items-center text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 2L2 8v10a1 1 0 001 1h5v-5h4v5h5a1 1 0 001-1V8l-8-6z" />
         </svg>
         <span class="text-xs">Home</span>
       </button>
-      <button onclick="openCommunity()" class="flex flex-col items-center text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openCommunity()" class="flex flex-col items-center text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
           <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
           <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
         </svg>
         <span class="text-xs">Community</span>
       </button>
-      <button onclick="openCreatorHub()" class="flex flex-col items-center text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openCreatorHub()" class="flex flex-col items-center text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
         </svg>
         <span class="text-xs">Create</span>
       </button>
-      <button onclick="openProfile()" class="flex flex-col items-center text-[#161823] hover:text-[#FE2C55] transition">
+      <button onclick="openProfile()" class="flex flex-col items-center text-[#161823] hover:text-[#10a37f] transition">
         <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 10a4 4 0 100-8 4 4 0 000 8zM2 18a8 8 0 1116 0H2z" clip-rule="evenodd" />
         </svg>
