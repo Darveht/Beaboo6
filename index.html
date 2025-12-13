@@ -1771,144 +1771,176 @@ setInterval(checkScheduledChapters, 60000);
         </div>
     </section>
 
-    <!-- Modal de Relato Diario -->
-    <div id="daily-story-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-        <div class="bg-white rounded-2xl p-6 w-11/12 max-w-md mx-4">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-gray-800">Crear Relato Diario</h3>
-                <button onclick="closeDailyStoryModal()" class="text-gray-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    <!-- Vista de Relato Diario - Pantalla Completa -->
+    <div id="daily-story-view" class="fixed inset-0 bg-white text-black overflow-y-auto hidden z-50">
+        <!-- Header -->
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4 z-10">
+            <div class="flex items-center justify-between">
+                <button onclick="closeDailyStoryModal()" class="text-[#FE2C55] flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
+                    Volver
                 </button>
+                <h1 class="text-xl font-bold text-gray-900">Crear Relato Diario</h1>
+                <div class="w-16"></div>
             </div>
-            
-            <!-- Herramientas del relato -->
-            <div class="mb-4 flex flex-wrap gap-2">
-                <button onclick="generateWithAI()" class="bg-purple-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-purple-700 transition flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    Generar con IA
-                </button>
-                <button onclick="translateText()" class="bg-blue-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-blue-700 transition flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                    </svg>
-                    Traducir
-                </button>
-                <button onclick="openCamera()" class="bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700 transition flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    Cámara
-                </button>
-            </div>
+        </div>
 
-            <!-- Área de contenido generado por IA -->
-            <div id="ai-generated-content" class="hidden mb-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 class="text-sm font-semibold text-purple-800 mb-2">Contenido generado por IA:</h4>
-                <p id="ai-text" class="text-sm text-purple-700"></p>
-                <button onclick="useAIContent()" class="mt-2 bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700 transition">
-                    Usar este contenido
-                </button>
-            </div>
-
-            <!-- Área de traducción -->
-            <div id="translation-area" class="hidden mb-4">
-                <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Traducir de:</label>
-                    <select id="source-language" class="w-full p-2 border border-gray-300 rounded text-sm">
-                        <option value="auto">Detectar automáticamente</option>
-                        <option value="es">Español</option>
-                        <option value="en">Inglés</option>
-                        <option value="fr">Francés</option>
-                        <option value="de">Alemán</option>
-                        <option value="it">Italiano</option>
-                        <option value="pt">Portugués</option>
-                    </select>
+        <div class="p-6 pb-24">
+            <!-- Sección Generar con IA -->
+            <div class="mb-8">
+                <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-6 text-white mb-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-2">Generar con IA</h2>
+                            <p class="text-purple-100">Crea contenido automático para tu relato</p>
+                        </div>
+                        <button onclick="generateWithAI()" class="bg-white text-purple-600 px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                            Generar
+                        </button>
+                    </div>
                 </div>
-                <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Traducir a:</label>
-                    <select id="target-language" class="w-full p-2 border border-gray-300 rounded text-sm">
-                        <option value="es">Español</option>
-                        <option value="en">Inglés</option>
-                        <option value="fr">Francés</option>
-                        <option value="de">Alemán</option>
-                        <option value="it">Italiano</option>
-                        <option value="pt">Portugués</option>
-                    </select>
-                </div>
-                <button onclick="performTranslation()" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition">
-                    Traducir texto
-                </button>
-                <div id="translation-result" class="hidden mt-3 p-3 bg-blue-50 rounded border border-blue-200">
-                    <h4 class="text-sm font-semibold text-blue-800 mb-2">Traducción:</h4>
-                    <p id="translated-text" class="text-sm text-blue-700"></p>
-                    <button onclick="useTranslation()" class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700 transition">
-                        Usar traducción
+                <div id="ai-generated-content" class="hidden bg-purple-50 rounded-xl p-4 border border-purple-200">
+                    <h4 class="font-semibold text-purple-800 mb-3">Contenido generado:</h4>
+                    <p id="ai-text" class="text-purple-700 mb-4"></p>
+                    <button onclick="useAIContent()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Usar este contenido
                     </button>
                 </div>
             </div>
 
-            <!-- Área de cámara -->
-            <div id="camera-area" class="hidden mb-4">
-                <video id="camera-video" class="w-full h-48 bg-gray-200 rounded-lg mb-2" autoplay playsinline></video>
-                <canvas id="camera-canvas" class="hidden"></canvas>
-                <div class="flex gap-2">
-                    <button onclick="capturePhoto()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700 transition flex-1">
-                        Tomar Foto
+            <!-- Sección Traductor -->
+            <div class="mb-8">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 text-white mb-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-2">Traductor</h2>
+                            <p class="text-blue-100">Traduce tu texto a diferentes idiomas</p>
+                        </div>
+                        <button onclick="translateText()" class="bg-white text-blue-600 px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                            </svg>
+                            Traducir
+                        </button>
+                    </div>
+                </div>
+                <div id="translation-area" class="hidden bg-blue-50 rounded-xl p-4 border border-blue-200 space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-medium text-blue-800 mb-2">Traducir de:</label>
+                            <select id="source-language" class="w-full p-3 border border-blue-300 rounded-lg">
+                                <option value="auto">Detectar automáticamente</option>
+                                <option value="es">Español</option>
+                                <option value="en">Inglés</option>
+                                <option value="fr">Francés</option>
+                                <option value="de">Alemán</option>
+                                <option value="it">Italiano</option>
+                                <option value="pt">Portugués</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-medium text-blue-800 mb-2">Traducir a:</label>
+                            <select id="target-language" class="w-full p-3 border border-blue-300 rounded-lg">
+                                <option value="es">Español</option>
+                                <option value="en">Inglés</option>
+                                <option value="fr">Francés</option>
+                                <option value="de">Alemán</option>
+                                <option value="it">Italiano</option>
+                                <option value="pt">Portugués</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="performTranslation()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium">
+                        Traducir texto
                     </button>
-                    <button onclick="closeCameraArea()" class="bg-gray-600 text-white px-4 py-2 rounded text-sm hover:bg-gray-700 transition">
-                        Cerrar
-                    </button>
+                    <div id="translation-result" class="hidden bg-white rounded-lg p-4 border border-blue-300">
+                        <h4 class="font-semibold text-blue-800 mb-3">Traducción:</h4>
+                        <p id="translated-text" class="text-blue-700 mb-4"></p>
+                        <button onclick="useTranslation()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            Usar traducción
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Vista previa de imagen capturada -->
-            <div id="captured-image-preview" class="hidden mb-4">
-                <img id="captured-image" class="w-full h-48 object-cover rounded-lg mb-2" alt="Foto capturada">
-                <div class="flex gap-2">
-                    <button onclick="useCapturedImage()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700 transition flex-1">
-                        Usar esta foto
-                    </button>
-                    <button onclick="retakePhoto()" class="bg-gray-600 text-white px-4 py-2 rounded text-sm hover:bg-gray-700 transition">
-                        Tomar otra
-                    </button>
+            <!-- Sección Cámara -->
+            <div class="mb-8">
+                <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-6 text-white mb-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-2">Cámara</h2>
+                            <p class="text-green-100">Toma una foto para tu relato</p>
+                        </div>
+                        <button onclick="openCamera()" class="bg-white text-green-600 px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Abrir Cámara
+                        </button>
+                    </div>
+                </div>
+                <div id="camera-area" class="hidden bg-green-50 rounded-xl p-4 border border-green-200">
+                    <video id="camera-video" class="w-full h-64 bg-gray-200 rounded-lg mb-4" autoplay playsinline></video>
+                    <canvas id="camera-canvas" class="hidden"></canvas>
+                    <div class="flex gap-3">
+                        <button onclick="capturePhoto()" class="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-medium">
+                            Tomar Foto
+                        </button>
+                        <button onclick="closeCameraArea()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+                <div id="captured-image-preview" class="hidden bg-green-50 rounded-xl p-4 border border-green-200">
+                    <img id="captured-image" class="w-full h-64 object-cover rounded-lg mb-4" alt="Foto capturada">
+                    <div class="flex gap-3">
+                        <button onclick="useCapturedImage()" class="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-medium">
+                            Usar esta foto
+                        </button>
+                        <button onclick="retakePhoto()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition">
+                            Tomar otra
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Formulario de relato -->
-            <form id="daily-story-form">
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Contenido del relato:</label>
-                    <textarea id="story-text" placeholder="Escribe tu relato diario aquí..." 
-                              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none" 
-                              rows="4" maxlength="500"></textarea>
-                    <div class="text-xs text-gray-500 mt-1">Máximo 500 caracteres</div>
-                </div>
-                
-                <!-- Vista previa de imagen seleccionada -->
-                <div id="story-image-preview" class="hidden mb-4">
-                    <img id="preview-story-image" class="w-full h-32 object-cover rounded-lg" alt="Vista previa">
-                    <button type="button" onclick="removeStoryImage()" class="mt-2 text-red-500 text-sm hover:text-red-700 transition">
-                        Quitar imagen
-                    </button>
-                </div>
-                
-                <!-- Selector de archivo (oculto) -->
-                <input type="file" id="story-file" accept="image/*" class="hidden" onchange="handleStoryImageSelect(event)">
-                
-                <div class="flex gap-3">
-                    <button type="button" onclick="document.getElementById('story-file').click()" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg hover:bg-gray-300 transition">
-                        Seleccionar Imagen
-                    </button>
-                    <button type="submit" class="flex-1 bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition">
-                        Publicar Relato
-                    </button>
-                </div>
-            </form>
+            <!-- Sección Escribir Relato -->
+            <div class="bg-gray-50 rounded-2xl p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Escribir Relato</h2>
+                <form id="daily-story-form" class="space-y-4">
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-2">Contenido del relato:</label>
+                        <textarea id="story-text" placeholder="Escribe tu relato diario aquí..." 
+                                  class="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none" 
+                                  rows="6" maxlength="500"></textarea>
+                        <div class="text-sm text-gray-500 mt-2">Máximo 500 caracteres</div>
+                    </div>
+                    
+                    <div id="story-image-preview" class="hidden">
+                        <img id="preview-story-image" class="w-full h-48 object-cover rounded-xl" alt="Vista previa">
+                        <button type="button" onclick="removeStoryImage()" class="mt-3 text-red-500 hover:text-red-700 transition">
+                            Quitar imagen
+                        </button>
+                    </div>
+                    
+                    <input type="file" id="story-file" accept="image/*" class="hidden" onchange="handleStoryImageSelect(event)">
+                    
+                    <div class="flex gap-4">
+                        <button type="button" onclick="document.getElementById('story-file').click()" class="flex-1 bg-gray-200 text-gray-700 py-4 rounded-xl hover:bg-gray-300 transition font-medium">
+                            Seleccionar Imagen
+                        </button>
+                        <button type="submit" class="flex-1 bg-purple-600 text-white py-4 rounded-xl hover:bg-purple-700 transition font-medium">
+                            Publicar Relato
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     

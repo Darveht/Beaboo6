@@ -463,13 +463,13 @@ document.addEventListener('DOMContentLoaded', () => {
         storyViewer.classList.remove('active');
     }
 
-    // Funciones del Modal de Relato Diario
+    // Funciones de la Vista de Relato Diario
     window.openDailyStoryModal = function() {
-        document.getElementById('daily-story-modal').classList.remove('hidden');
+        document.getElementById('daily-story-view').classList.remove('hidden');
     };
 
     window.closeDailyStoryModal = function() {
-        document.getElementById('daily-story-modal').classList.add('hidden');
+        document.getElementById('daily-story-view').classList.add('hidden');
         resetDailyStoryForm();
     };
 
