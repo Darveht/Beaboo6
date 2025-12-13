@@ -13,7 +13,7 @@ function openSupportFromAuth() {
   
   // Agregar texto predeterminado en la descripción
   const descriptionField = document.getElementById('support-description');
-  descriptionField.value = 'No puedo acceder a mi cuenta. ';
+  descriptionField.value = 'No puedo crear mi cuenta. ';
   
   // Actualizar el contador de caracteres
   updateCharacterCount();
@@ -184,6 +184,18 @@ function validateForm() {
 
 // Agregar event listeners cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
+  // Event listeners para los tabs
+  const loginTab = document.getElementById('loginTab');
+  const registerTab = document.getElementById('registerTab');
+  
+  if (loginTab) {
+    loginTab.addEventListener('click', () => switchAuthMode('login'));
+  }
+  
+  if (registerTab) {
+    registerTab.addEventListener('click', () => switchAuthMode('register'));
+  }
+  
   // Event listener para el formulario de soporte
   const supportForm = document.getElementById('support-form');
   if (supportForm) {
@@ -212,6 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Validación inicial
   validateForm();
+  
+  // Inicializar en modo login
+  switchAuthMode('login');
   
   // Atajos de teclado
   document.addEventListener('keydown', function(event) {
