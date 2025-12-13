@@ -1127,8 +1127,57 @@ setInterval(checkScheduledChapters, 60000);
     #download-story-btn {
       cursor: pointer;
     }
+
+    /* ESTILOS PARA EL MODAL DE SOPORTE */
+    #support-modal {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    #support-modal.hidden {
+      animation: fadeOut 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    /* Animación para el botón de envío */
+    #btn-send-support:hover {
+      transform: scale(1.02);
+    }
+
+    #btn-send-support:active {
+      transform: scale(0.98);
+    }
+
+    /* Estilos para campos de formulario con focus mejorado */
+    #support-email:focus,
+    #support-problem-type:focus,
+    #support-description:focus {
+      box-shadow: 0 0 0 3px rgba(254, 44, 85, 0.1);
+      border-color: #FE2C55;
+    }
   </style>
   <link rel="stylesheet" href="stories.css">
+  <script src="auth-support.js"></script>
   <script>
     /*********************** BLOQUEO DE ACCESO EN COMPUTADORAS (Móvil obligatorio) ***********************/
     function esDispositivoMovil() {
@@ -1386,9 +1435,14 @@ setInterval(checkScheduledChapters, 60000);
             rows="6"
             minlength="100"
             required
+            oninput="updateCharacterCount()"
           ></textarea>
           <div class="flex justify-between items-center mt-2">
             <span id="char-count" class="text-sm text-gray-500">0 / 100 caracteres mínimo</span>
+            <div id="validation-message" class="text-sm text-green-600 hidden">
+              <i class="fas fa-check-circle mr-1"></i>
+              Listo para enviar
+            </div>
           </div>
         </div>
 
@@ -1882,6 +1936,14 @@ setInterval(checkScheduledChapters, 60000);
         class="block text-sm text-gray-600 hover:text-[#FE2C55] transition"
       >
         Forgot your password?
+      </a>
+      <a
+        href="#"
+        onclick="openSupportFromAuth()"
+        class="block text-sm text-gray-600 hover:text-[#FE2C55] transition flex items-center justify-center"
+      >
+        <i class="fas fa-life-ring mr-2"></i>
+        Can't access your account? Contact support
       </a>
       <button
         id="toggleAuth"
