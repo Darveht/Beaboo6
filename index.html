@@ -1947,60 +1947,92 @@ setInterval(checkScheduledChapters, 60000);
   <!-- Google Translate (oculto) -->
   <div id="google_translate_element" style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;"></div>
   
-  <div id="auth-form" class="w-full h-screen flex flex-col justify-center p-6 relative" style="display: flex;">
+  <div id="auth-form" class="w-full h-screen flex flex-col p-6 relative" style="display: flex; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
     <!-- Content overlay -->
-    <div class="relative z-10 w-full">
-    <!-- Centered title -->
-    <h1 id="auth-title" class="text-4xl font-bold text-center mb-8 text-[#FE2C55]">Zenvio</h1>
-    <!-- Form takes full available width -->
-    <form id="authForm" class="w-full space-y-6 max-w-lg mx-auto">
-      <input
-        id="emailInput"
-        type="email"
-        placeholder="Email address"
-        class="w-full p-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55] transition"
-        required
-      >
-      <input
-        id="passwordInput"
-        type="password"
-        placeholder="Password"
-        class="w-full p-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55] transition"
-        required
-      >
-      <button
-        id="submitButton"
-        type="submit"
-        class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full transform hover:scale-105 transition"
-      >
-        Sign In
-      </button>
-    </form>
-    <!-- Links and toggle below the form -->
-    <div class="mt-6 text-center space-y-4 max-w-lg mx-auto">
-      <a
-        href="#"
-        onclick="resetPassword()"
-        class="block text-sm text-gray-600 hover:text-[#FE2C55] transition"
-      >
-        Forgot your password?
-      </a>
-      <a
-        href="#"
-        onclick="openSupportFromAuth()"
-        class="block text-sm text-gray-600 hover:text-[#FE2C55] transition flex items-center justify-center"
-      >
-        <i class="fas fa-life-ring mr-2"></i>
-        Can't access your account? Contact support
-      </a>
-      <button
-        id="toggleAuth"
-        class="block text-sm font-medium text-[#10a37f] hover:text-[#0d8b6f] transition"
-      >
-        Don't have an account? Sign up
-      </button>
-      <div id="authError" class="mt-4 text-red-500 hidden"></div>
-    </div>
+    <div class="relative z-10 w-full h-full flex flex-col">
+      <!-- Logo at the top -->
+      <h1 id="auth-title" class="text-5xl font-bold text-center mt-8 mb-12 text-[#FE2C55]">Zenvio</h1>
+      
+      <!-- Container for both forms -->
+      <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full space-y-8">
+        
+        <!-- Sign In Section -->
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/50">
+          <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Sign In</h2>
+          <form id="authFormSignIn" class="space-y-4">
+            <input
+              id="emailInputSignIn"
+              type="email"
+              placeholder="Email address"
+              class="w-full p-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55] transition"
+              required
+            >
+            <input
+              id="passwordInputSignIn"
+              type="password"
+              placeholder="Password"
+              class="w-full p-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55] transition"
+              required
+            >
+            <button
+              id="submitButtonSignIn"
+              type="submit"
+              class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full transform hover:scale-105 transition"
+            >
+              Sign In
+            </button>
+          </form>
+          <div class="mt-4 text-center">
+            <a
+              href="#"
+              onclick="resetPassword()"
+              class="text-sm text-gray-600 hover:text-[#FE2C55] transition"
+            >
+              Forgot your password?
+            </a>
+          </div>
+        </div>
+
+        <!-- Sign Up Section -->
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/50">
+          <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Sign Up</h2>
+          <form id="authFormSignUp" class="space-y-4">
+            <input
+              id="emailInputSignUp"
+              type="email"
+              placeholder="Email address"
+              class="w-full p-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55] transition"
+              required
+            >
+            <input
+              id="passwordInputSignUp"
+              type="password"
+              placeholder="Password"
+              class="w-full p-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55] transition"
+              required
+            >
+            <button
+              id="submitButtonSignUp"
+              type="submit"
+              class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full transform hover:scale-105 transition"
+            >
+              Sign Up
+            </button>
+          </form>
+          <div class="mt-4 text-center">
+            <a
+              href="#"
+              onclick="openSupportFromAuth()"
+              class="text-sm text-gray-600 hover:text-[#FE2C55] transition flex items-center justify-center"
+            >
+              <i class="fas fa-life-ring mr-2"></i>
+              Can't access your account? Contact support
+            </a>
+          </div>
+        </div>
+
+        <div id="authError" class="text-red-500 text-center hidden"></div>
+      </div>
     </div>
   </div>
 </body>
