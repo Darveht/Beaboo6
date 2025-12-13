@@ -1947,88 +1947,96 @@ setInterval(checkScheduledChapters, 60000);
   <!-- Google Translate (oculto) -->
   <div id="google_translate_element" style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;"></div>
   
-  <div id="auth-form" class="w-full h-screen flex flex-col justify-center items-center p-6 relative" style="display: flex; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
-    <div class="relative z-10 w-full max-w-md">
-      <h1 id="auth-title" class="text-5xl font-bold text-center mb-16 text-[#FE2C55]">Zenvio</h1>
+  <!-- Pantalla principal con logo y botones -->
+  <div id="auth-welcome" class="w-full h-screen flex flex-col p-6 relative" style="display: flex; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
+    <div class="relative z-10 w-full h-full flex flex-col">
+      <h1 class="text-6xl font-bold text-center mt-12 text-[#FE2C55]">Zenvio</h1>
       
-      <div class="space-y-4">
-        <button onclick="openSignUpModal()" class="w-full bg-[#10a37f] text-white p-5 font-bold rounded-full transform hover:scale-105 transition text-xl">
+      <div class="flex-1"></div>
+      
+      <div class="space-y-4 mb-12 max-w-md mx-auto w-full">
+        <button onclick="showSignUp()" class="w-full bg-[#10a37f] text-white p-5 font-bold rounded-full transform hover:scale-105 transition text-xl">
           Registrarse
         </button>
         
-        <button onclick="openSignInModal()" class="w-full bg-white/90 text-[#10a37f] p-5 font-bold rounded-full transform hover:scale-105 transition text-xl border-2 border-[#10a37f]">
+        <button onclick="showSignIn()" class="w-full bg-white/90 text-[#10a37f] p-5 font-bold rounded-full transform hover:scale-105 transition text-xl border-2 border-[#10a37f]">
           Iniciar Sesión
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Modal Sign In -->
-  <div id="signInModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-6">
-    <div class="bg-white rounded-3xl p-8 w-full max-w-md">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Iniciar Sesión</h2>
-        <button onclick="closeSignInModal()" class="text-gray-500 hover:text-gray-700">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
+  <!-- Sección Sign In (pantalla completa) -->
+  <div id="auth-signin-section" class="fixed inset-0 z-50 hidden w-full h-screen flex flex-col justify-center items-center p-6" style="background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
+    <div class="w-full max-w-md">
+      <button onclick="backToWelcome()" class="mb-8 text-white flex items-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Volver
+      </button>
+      
+      <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Iniciar Sesión</h2>
+        <form id="authForm" class="space-y-4">
+          <input id="emailInput" type="email" placeholder="Email" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
+          <input id="passwordInput" type="password" placeholder="Contraseña" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
+          <button id="submitButton" type="submit" class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full hover:scale-105 transition">
+            Entrar
+          </button>
+        </form>
+        <div class="mt-6 text-center">
+          <a href="#" onclick="resetPassword()" class="text-sm text-gray-600 hover:text-[#FE2C55]">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+        <div id="authError" class="mt-4 text-red-500 text-center hidden"></div>
       </div>
-      <form id="authForm" class="space-y-4">
-        <input id="emailInput" type="email" placeholder="Email" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
-        <input id="passwordInput" type="password" placeholder="Contraseña" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
-        <button id="submitButton" type="submit" class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full hover:scale-105 transition">
-          Entrar
-        </button>
-      </form>
-      <div class="mt-4 text-center">
-        <a href="#" onclick="resetPassword()" class="text-sm text-gray-600 hover:text-[#FE2C55]">
-          ¿Olvidaste tu contraseña?
-        </a>
-      </div>
-      <div id="authError" class="mt-4 text-red-500 text-center hidden"></div>
     </div>
   </div>
 
-  <!-- Modal Sign Up -->
-  <div id="signUpModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-6">
-    <div class="bg-white rounded-3xl p-8 w-full max-w-md">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Registrarse</h2>
-        <button onclick="closeSignUpModal()" class="text-gray-500 hover:text-gray-700">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-      <form id="authFormSignUp" class="space-y-4">
-        <input id="emailInputSignUp" type="email" placeholder="Email" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
-        <input id="passwordInputSignUp" type="password" placeholder="Contraseña" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
-        <button id="submitButtonSignUp" type="submit" class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full hover:scale-105 transition">
-          Crear Cuenta
-        </button>
-      </form>
-      <div class="mt-4 text-center">
-        <a href="#" onclick="openSupportFromAuth()" class="text-sm text-gray-600 hover:text-[#FE2C55] flex items-center justify-center">
-          <i class="fas fa-life-ring mr-2"></i>
-          ¿No puedes acceder? Contacta soporte
-        </a>
+  <!-- Sección Sign Up (pantalla completa) -->
+  <div id="auth-signup-section" class="fixed inset-0 z-50 hidden w-full h-screen flex flex-col justify-center items-center p-6" style="background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
+    <div class="w-full max-w-md">
+      <button onclick="backToWelcome()" class="mb-8 text-white flex items-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Volver
+      </button>
+      
+      <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Registrarse</h2>
+        <form id="authFormSignUp" class="space-y-4">
+          <input id="emailInputSignUp" type="email" placeholder="Email" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
+          <input id="passwordInputSignUp" type="password" placeholder="Contraseña" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
+          <button id="submitButtonSignUp" type="submit" class="w-full bg-[#10a37f] text-white p-4 font-bold rounded-full hover:scale-105 transition">
+            Crear Cuenta
+          </button>
+        </form>
+        <div class="mt-6 text-center">
+          <a href="#" onclick="openSupportFromAuth()" class="text-sm text-gray-600 hover:text-[#FE2C55] flex items-center justify-center">
+            <i class="fas fa-life-ring mr-2"></i>
+            ¿No puedes acceder? Contacta soporte
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    function openSignInModal() {
-      document.getElementById('signInModal').classList.remove('hidden');
+    function showSignIn() {
+      document.getElementById('auth-welcome').style.display = 'none';
+      document.getElementById('auth-signin-section').classList.remove('hidden');
     }
-    function closeSignInModal() {
-      document.getElementById('signInModal').classList.add('hidden');
+    function showSignUp() {
+      document.getElementById('auth-welcome').style.display = 'none';
+      document.getElementById('auth-signup-section').classList.remove('hidden');
     }
-    function openSignUpModal() {
-      document.getElementById('signUpModal').classList.remove('hidden');
-    }
-    function closeSignUpModal() {
-      document.getElementById('signUpModal').classList.add('hidden');
+    function backToWelcome() {
+      document.getElementById('auth-welcome').style.display = 'flex';
+      document.getElementById('auth-signin-section').classList.add('hidden');
+      document.getElementById('auth-signup-section').classList.add('hidden');
     }
   </script>
 </body>
