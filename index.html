@@ -1948,26 +1948,21 @@ setInterval(checkScheduledChapters, 60000);
   <div id="google_translate_element" style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;"></div>
   
   <!-- Pantalla principal con logo y botones -->
-  <div id="auth-welcome" class="w-full h-screen flex flex-col p-6 relative" style="display: flex; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
-    <div class="relative z-10 w-full h-full flex flex-col">
-      <h1 class="text-6xl font-bold text-center mt-12 text-[#FE2C55]">Zenvio</h1>
-      
-      <div class="flex-1"></div>
-      
-      <div class="space-y-4 mb-12 max-w-md mx-auto w-full">
-        <button onclick="showSignUp()" class="w-full bg-[#10a37f] text-white p-5 font-bold rounded-full transform hover:scale-105 transition text-xl">
-          Registrarse
-        </button>
-        
-        <button onclick="showSignIn()" class="w-full bg-white/90 text-[#10a37f] p-5 font-bold rounded-full transform hover:scale-105 transition text-xl border-2 border-[#10a37f]">
-          Iniciar Sesión
-        </button>
-      </div>
+  <div id="auth-welcome" class="w-full h-screen flex flex-col p-6" style="display: flex; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
+    <h1 class="text-6xl font-bold text-center mt-12 text-[#FE2C55]">Zenvio</h1>
+    <div class="flex-1"></div>
+    <div class="space-y-4 mb-12 max-w-md mx-auto w-full">
+      <button onclick="showSignUp()" class="w-full bg-[#10a37f] text-white p-5 font-bold rounded-full transform hover:scale-105 transition text-xl">
+        Registrarse
+      </button>
+      <button onclick="showSignIn()" class="w-full bg-white/90 text-[#10a37f] p-5 font-bold rounded-full transform hover:scale-105 transition text-xl border-2 border-[#10a37f]">
+        Iniciar Sesión
+      </button>
     </div>
   </div>
 
-  <!-- Sección Sign In (pantalla completa) -->
-  <div id="auth-signin-section" class="fixed inset-0 z-50 hidden w-full h-screen flex flex-col justify-center items-center p-6" style="background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
+  <!-- Sección Sign In -->
+  <div id="auth-signin-section" class="w-full h-screen flex flex-col justify-center items-center p-6" style="display: none; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
     <div class="w-full max-w-md">
       <button onclick="backToWelcome()" class="mb-8 text-white flex items-center">
         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1975,7 +1970,6 @@ setInterval(checkScheduledChapters, 60000);
         </svg>
         Volver
       </button>
-      
       <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8">
         <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Iniciar Sesión</h2>
         <form id="authForm" class="space-y-4">
@@ -1995,8 +1989,8 @@ setInterval(checkScheduledChapters, 60000);
     </div>
   </div>
 
-  <!-- Sección Sign Up (pantalla completa) -->
-  <div id="auth-signup-section" class="fixed inset-0 z-50 hidden w-full h-screen flex flex-col justify-center items-center p-6" style="background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
+  <!-- Sección Sign Up -->
+  <div id="auth-signup-section" class="w-full h-screen flex flex-col justify-center items-center p-6" style="display: none; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
     <div class="w-full max-w-md">
       <button onclick="backToWelcome()" class="mb-8 text-white flex items-center">
         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2004,7 +1998,6 @@ setInterval(checkScheduledChapters, 60000);
         </svg>
         Volver
       </button>
-      
       <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8">
         <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Registrarse</h2>
         <form id="authFormSignUp" class="space-y-4">
@@ -2027,16 +2020,16 @@ setInterval(checkScheduledChapters, 60000);
   <script>
     function showSignIn() {
       document.getElementById('auth-welcome').style.display = 'none';
-      document.getElementById('auth-signin-section').classList.remove('hidden');
+      document.getElementById('auth-signin-section').style.display = 'flex';
     }
     function showSignUp() {
       document.getElementById('auth-welcome').style.display = 'none';
-      document.getElementById('auth-signup-section').classList.remove('hidden');
+      document.getElementById('auth-signup-section').style.display = 'flex';
     }
     function backToWelcome() {
       document.getElementById('auth-welcome').style.display = 'flex';
-      document.getElementById('auth-signin-section').classList.add('hidden');
-      document.getElementById('auth-signup-section').classList.add('hidden');
+      document.getElementById('auth-signin-section').style.display = 'none';
+      document.getElementById('auth-signup-section').style.display = 'none';
     }
   </script>
 </body>
