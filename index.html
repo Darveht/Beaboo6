@@ -1965,8 +1965,8 @@ setInterval(checkScheduledChapters, 60000);
     </div>
 
     <!-- Sección Sign In -->
-    <div id="auth-signin-section" class="w-full h-screen flex flex-col p-6" style="display: none; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
-      <button onclick="backToWelcome()" class="mb-8 text-white flex items-center">
+    <div id="auth-signin-section" class="w-full h-screen flex flex-col p-6 bg-white" style="display: none;">
+      <button onclick="backToWelcome()" class="mb-8 text-gray-700 flex items-center">
         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -1974,7 +1974,7 @@ setInterval(checkScheduledChapters, 60000);
       </button>
       <div class="flex-1"></div>
       <div class="w-full max-w-md mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-8 text-white">Iniciar Sesión</h2>
+        <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Iniciar Sesión</h2>
         <form id="authForm" class="space-y-4">
           <input id="emailInput" type="email" placeholder="Email" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
           <input id="passwordInput" type="password" placeholder="Contraseña" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
@@ -1983,7 +1983,7 @@ setInterval(checkScheduledChapters, 60000);
           </button>
         </form>
         <div class="mt-6 text-center">
-          <a href="#" onclick="resetPassword()" class="text-sm text-white hover:text-[#FE2C55]">
+          <a href="#" onclick="resetPassword()" class="text-sm text-gray-600 hover:text-[#FE2C55]">
             ¿Olvidaste tu contraseña?
           </a>
         </div>
@@ -1993,8 +1993,8 @@ setInterval(checkScheduledChapters, 60000);
     </div>
 
     <!-- Sección Sign Up -->
-    <div id="auth-signup-section" class="w-full h-screen flex flex-col p-6" style="display: none; background-image: url('https://i.ibb.co/1J9sJDz6/0ba17463-ed9f-4722-a06e-54676445e106.jpg'); background-size: cover; background-position: center;">
-      <button onclick="backToWelcome()" class="mb-8 text-white flex items-center">
+    <div id="auth-signup-section" class="w-full h-screen flex flex-col p-6 bg-white" style="display: none;">
+      <button onclick="backToWelcome()" class="mb-8 text-gray-700 flex items-center">
         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -2002,7 +2002,7 @@ setInterval(checkScheduledChapters, 60000);
       </button>
       <div class="flex-1"></div>
       <div class="w-full max-w-md mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-8 text-white">Registrarse</h2>
+        <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Registrarse</h2>
         <form id="authFormSignUp" class="space-y-4">
           <input id="emailInputSignUp" type="email" placeholder="Email" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
           <input id="passwordInputSignUp" type="password" placeholder="Contraseña" class="w-full p-4 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#FE2C55]" required>
@@ -2011,7 +2011,7 @@ setInterval(checkScheduledChapters, 60000);
           </button>
         </form>
         <div class="mt-6 text-center">
-          <a href="#" onclick="openSupportFromAuth()" class="text-sm text-white hover:text-[#FE2C55] flex items-center justify-center">
+          <a href="#" onclick="openSupportFromAuth()" class="text-sm text-gray-600 hover:text-[#FE2C55] flex items-center justify-center">
             <i class="fas fa-life-ring mr-2"></i>
             ¿No puedes acceder? Contacta soporte
           </a>
